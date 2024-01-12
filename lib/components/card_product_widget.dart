@@ -2,10 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'card_product_model.dart';
@@ -17,16 +15,12 @@ class CardProductWidget extends StatefulWidget {
     this.parameter1,
     this.parameter2,
     this.parameter3,
-    this.parameter4,
-    this.parameter5,
     this.parameter6,
   }) : super(key: key);
 
   final dynamic parameter1;
   final dynamic parameter2;
   final dynamic parameter3;
-  final dynamic parameter4;
-  final dynamic parameter5;
   final dynamic parameter6;
 
   @override
@@ -115,40 +109,6 @@ class _CardProductWidgetState extends State<CardProductWidget> {
                   ),
                   Text(
                     'Condition: ${widget.parameter3! ? '\"New\"' : '\"Old\"'}',
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Plus Jakarta Sans',
-                          fontSize: 16.0,
-                        ),
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RatingBarIndicator(
-                        itemBuilder: (context, index) => Icon(
-                          Icons.star_rounded,
-                          color: FlutterFlowTheme.of(context).warning,
-                        ),
-                        direction: Axis.horizontal,
-                        rating: random_data.randomDouble(4.6, 5.0),
-                        unratedColor: FlutterFlowTheme.of(context).accent3,
-                        itemCount: 5,
-                        itemSize: 24.0,
-                      ),
-                      Text(
-                        '(${widget.parameter4?.toString()})',
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Plus Jakarta Sans',
-                              fontSize: 16.0,
-                            ),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    'Review: ${widget.parameter5?.toString()}',
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Plus Jakarta Sans',

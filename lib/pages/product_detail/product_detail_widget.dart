@@ -310,14 +310,6 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                 detailItem,
                                                 r'''$.isNew''',
                                               ),
-                                              parameter4: getJsonField(
-                                                detailItem,
-                                                r'''$.rating''',
-                                              ),
-                                              parameter5: getJsonField(
-                                                detailItem,
-                                                r'''$.reviews''',
-                                              ),
                                               parameter6: getJsonField(
                                                 detailItem,
                                                 r'''$.link''',

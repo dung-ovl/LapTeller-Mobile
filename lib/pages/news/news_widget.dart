@@ -188,7 +188,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
+                              context.goNamed(
                                 'GPTFlow',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
@@ -250,7 +250,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
+                              context.goNamed(
                                 'Video',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
@@ -607,7 +607,7 @@ class _NewsWidgetState extends State<NewsWidget> {
               ),
               Container(
                 width: double.infinity,
-                height: 500.0,
+                height: 700.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),

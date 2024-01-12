@@ -134,7 +134,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
+                              context.goNamed(
                                 'News',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
@@ -196,7 +196,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
+                              context.goNamed(
                                 'GPTFlow',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(

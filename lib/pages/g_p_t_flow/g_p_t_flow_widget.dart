@@ -149,7 +149,7 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
+                              context.goNamed(
                                 'News',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
@@ -265,7 +265,7 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.pushNamed(
+                              context.goNamed(
                                 'Video',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
@@ -663,7 +663,12 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        if (chatIndex % 2 != 0)
+                                                        if ((String role) {
+                                                          return role == "bot";
+                                                        }(getJsonField(
+                                                          chatItem,
+                                                          r'''$.role''',
+                                                        ).toString()))
                                                           Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -811,6 +816,7 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                                                                                 padding: EdgeInsets.all(4.0),
                                                                                                 child: Column(
                                                                                                   mainAxisSize: MainAxisSize.max,
+                                                                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                                                                   children: [
                                                                                                     Padding(
                                                                                                       padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
@@ -819,7 +825,7 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                                                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                                         crossAxisAlignment: CrossAxisAlignment.center,
                                                                                                         children: [
-                                                                                                          Row(
+                                                                                                          Column(
                                                                                                             mainAxisSize: MainAxisSize.max,
                                                                                                             children: [
                                                                                                               Text(
@@ -827,6 +833,7 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                                                                                                   productsItem,
                                                                                                                   r'''$.name''',
                                                                                                                 ).toString(),
+                                                                                                                textAlign: TextAlign.start,
                                                                                                                 style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                                                                       fontFamily: 'Outfit',
                                                                                                                       color: FlutterFlowTheme.of(context).info,
@@ -977,7 +984,12 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                                               ),
                                                             ],
                                                           ),
-                                                        if (chatIndex % 2 == 0)
+                                                        if ((String role) {
+                                                          return role == "user";
+                                                        }(getJsonField(
+                                                          chatItem,
+                                                          r'''$.role''',
+                                                        ).toString()))
                                                           Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1181,7 +1193,7 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                           functions.saveChatHistory(
                                               FFAppState().chatHistory,
                                               functions.convertToJSON(
-                                                  _model.inputContent));
+                                                  _model.inputContent, 'user'));
                                     });
                                     setState(() {
                                       _model.textController?.clear();
@@ -1198,12 +1210,15 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                             functions.saveChatHistory(
                                                 FFAppState().chatHistory,
                                                 functions.convertToJSONBOT(
-                                                    getJsonField(
-                                                      (_model.chatGPTResponse
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$.answer''',
-                                                    ).toString(),
+                                                    valueOrDefault<String>(
+                                                      getJsonField(
+                                                        (_model.chatGPTResponse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.answer''',
+                                                      )?.toString(),
+                                                      'Try again',
+                                                    ),
                                                     getJsonField(
                                                       (_model.chatGPTResponse
                                                               ?.jsonBody ??
@@ -1218,7 +1233,8 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                             functions.saveChatHistory(
                                                 FFAppState().chatHistory,
                                                 functions.convertToJSON(
-                                                    'Fail network, try again!'));
+                                                    'Fail network, try again!',
+                                                    'bot'));
                                       });
                                     }
 
@@ -1227,7 +1243,7 @@ class _GPTFlowWidgetState extends State<GPTFlowWidget> {
                                     await _model.listViewController1?.animateTo(
                                       _model.listViewController1!.position
                                           .maxScrollExtent,
-                                      duration: Duration(milliseconds: 100),
+                                      duration: Duration(milliseconds: 200),
                                       curve: Curves.ease,
                                     );
                                   } else {
